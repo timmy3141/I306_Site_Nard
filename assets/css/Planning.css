@@ -1,0 +1,117 @@
+/* ===== PAGE PLANNING ===== */
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ===== SECTION HORAIRES ===== */
+.hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 30px;
+}
+
+.schedule-title-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    padding-left: 40px;
+    text-align: left;
+    font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.schedule {
+    width: 100%;
+    max-width: 1100px;
+}
+
+.schedule-wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.schedule-day {
+    flex: 1 1 400px;
+    max-width: 500px;
+}
+
+.schedule-day h3 {
+    background: rgba(25, 25, 25, 0.9);
+    border: 2px solid orange;
+    color: white;
+    padding: 12px 16px;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    border-left: 2px solid orange;
+    border-right: 2px solid orange;
+    border-bottom: 2px solid orange;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.row span {
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.row span:first-child {
+    border-right: 2px solid orange;
+    color: orange;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+    .schedule-title-main {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 900px) {
+    .schedule-title-main {
+        padding-left: 20px;
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 800px) {
+    .schedule {
+        width: 95%;
+    }
+
+    .schedule-day h3 {
+        font-size: 16px;
+    }
+
+    .row {
+        grid-template-columns: 120px 1fr;
+    }
+
+    .row span {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .schedule-title-main {
+        font-size: 24px;
+    }
+}

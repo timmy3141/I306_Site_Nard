@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/apropos.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+
+            <nav>
+                <a href="Accueil.html">ACCUEIL</a>
+                <a href="Planning.html">PLANNING</a>
+                <a href="Billetterie.html">BILLETTERIE</a>
+                <a href="Apropos.html" class="active">À PROPOS</a>
+                <a href="Contacts.html">CONTACTS</a>
+            </nav>
+        </div>
+
+        <div class="header-line"></div>
+    </header>
+
+    <!-- ===== CONTENU ===== -->
+    <section class="about-hero">
+        <img class="section-bg" src="../assets/images/apropos_bg.png" alt="Fond à propos">
+
+        <div class="overlay"></div>
+
+        <div class="about-content">
+            <div class="about-box">
+
+                <div class="about-block">
+                    <h2>NARD Corporation</h2>
+                    <p>
+                        NARD Corporation est une entreprise spécialisée dans l’organisation et la gestion
+                        d’événements, avec un focus particulier sur le gaming.
+                    </p>
+                    <p>
+                        Nous accompagnons nos clients à chaque étape du projet, de la planification à la mise
+                        en œuvre, en proposant des solutions structurées, efficaces et adaptées à leurs besoins.
+                    </p>
+                    <p>
+                        Notre objectif est de garantir des événements de qualité, tout en optimisant les ressources
+                        et en assurant une expérience fluide pour tous les participants.
+                    </p>
+                </div>
+
+                <div class="about-block">
+                    <h2>EventAndParty</h2>
+                    <p>
+                        EventAndParty est une entreprise suisse spécialisée dans l’organisation d’événements E-Sport.
+                    </p>
+                    <p>
+                        Elle conçoit et développe des tournois d’envergure, en mettant l’accent sur l’innovation,
+                        l’expérience des participants et la visibilité des partenaires.
+                    </p>
+                    <p>
+                        Grâce à son expertise, EventAndParty s’impose comme un acteur clé dans la création
+                        d’événements immersifs et professionnels.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <button id="floatingCartButton" class="floating-cart-button">
+        Panier (<span id="floatingCartCount">0</span>)
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top"></div>
+        <p></p>
+        <p></p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const floatingCartButton = document.getElementById('floatingCartButton');
+        const floatingCartCount = document.getElementById('floatingCartCount');
+
+        function updateFloatingCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            floatingCartCount.textContent = count;
+        }
+
+        updateFloatingCart();
+
+        floatingCartButton.addEventListener('click', () => {
+            window.location.href = "Billetterie.html";
+        });
+    </script>
+
+</body>
+</html>

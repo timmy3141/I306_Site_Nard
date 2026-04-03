@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billetterie</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/billetterie.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+
+            <nav>
+                <a href="Accueil.html">ACCUEIL</a>
+                <a href="Planning.html">PLANNING</a>
+                <a href="Billetterie.html" class="active">BILLETTERIE</a>
+                <a href="Apropos.html">À PROPOS</a>
+                <a href="Contacts.html">CONTACTS</a>
+            </nav>
+        </div>
+
+        <div class="header-line"></div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="ticket-hero">
+        <img class="section-bg" src="../assets/images/billetterie_1_bg.png" alt="Fond billetterie">
+        <div class="overlay"></div>
+
+        <div class="ticket-hero-content">
+            <p></p>
+            <p></p>
+            <p></p>
+
+            <div class="ticket-grid">
+                <article class="ticket-card">
+                    <div class="ticket-badge">1 jour</div>
+                    <h2>Pass Journée</h2>
+                    <p class="ticket-price">39.9 CHF</p>
+                    <ul>
+                        <li>Accès complet à 1 journée</li>
+                    </ul>
+                    <button class="btn primary add-to-cart" data-ticket="Pass Journée" data-price="39.9">
+                        Ajouter au panier
+                    </button>
+                </article>
+
+                <article class="ticket-card featured">
+                    <div class="ticket-badge">2 jours</div>
+                    <h2>Pass Week-end</h2>
+                    <p class="ticket-price">75.9 CHF</p>
+                    <ul>
+                        <li>Accès complet aux 2 jours</li>
+                        <li>Meilleur rapport qualité/prix</li>
+                    </ul>
+                    <button class="btn primary add-to-cart" data-ticket="Pass Week-end" data-price="75.9">
+                        Ajouter au panier
+                    </button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BOUTON PANIER FLOTTANT ===== -->
+    <button id="floatingCartButton" class="floating-cart-button">
+        Panier (<span id="floatingCartCount">0</span>)
+    </button>
+
+    <!-- ===== POPUP PANIER ===== -->
+    <div class="modal" id="cartModal">
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-box">
+            <button class="modal-close" id="closeCart">&times;</button>
+
+            <h2>Panier</h2>
+
+            <div class="cart-table">
+                <div class="cart-table-header">
+                    <span>Article</span>
+                    <span>Quantité</span>
+                    <span>Prix</span>
+                </div>
+
+                <div id="cartItemsContainer"></div>
+            </div>
+
+            <div class="cart-empty" id="cartEmptyMessage">
+                Votre panier est vide.
+            </div>
+
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalPrice">0.00 CHF</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" id="clearCart">Vider le panier</button>
+                <button class="btn primary" id="goToPayment">Passer au paiement</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== POPUP PAIEMENT ===== -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-box payment-box">
+            <button class="modal-close" id="closePayment">&times;</button>
+
+            <h2>Paiement</h2>
+
+            <form class="payment-form" id="paymentForm">
+                <div class="form-group full">
+                    <label for="cardholder">Nom sur la carte</label>
+                    <input type="text" id="cardholder" placeholder="Ex. Jean Dupont">
+                </div>
+
+                <div class="form-group full">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="exemple@email.com" required>
+                </div>
+
+                <div class="form-group full">
+                    <label for="cardnumber">Numéro de carte</label>
+                    <input type="text" id="cardnumber" placeholder="0000 0000 0000 0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="expiry">MM/YY</label>
+                    <input type="text" id="expiry" placeholder="08/28">
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn secondary" id="backToCart">Retour</button>
+                    <button type="submit" class="btn primary">Payer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== POPUP CONFIRMATION ===== -->
+    <div class="modal" id="successModal">
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-box success-box">
+            <button class="modal-close" id="closeSuccess">&times;</button>
+            <h2>Paiement validé</h2>
+            <p class="success-text">Merci pour votre achat.</p>
+            <p class="success-text">Une confirmation a été envoyée à votre adresse email avec votre billet.</p>
+            <p class="success-text">Présentez votre QR code ou votre numéro client à l’entrée.</p>
+            <p class="success-id">Numéro client : <span id="clientId"></span></p>
+
+            <div class="modal-actions">
+                <button class="btn primary" id="successOk">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top"></div>
+        <p></p>
+        <p></p>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const floatingCartButton = document.getElementById('floatingCartButton');
+        const floatingCartCount = document.getElementById('floatingCartCount');
+
+        const cartModal = document.getElementById('cartModal');
+        const paymentModal = document.getElementById('paymentModal');
+        const successModal = document.getElementById('successModal');
+
+        const closeCart = document.getElementById('closeCart');
+        const closePayment = document.getElementById('closePayment');
+        const closeSuccess = document.getElementById('closeSuccess');
+
+        const goToPayment = document.getElementById('goToPayment');
+        const backToCart = document.getElementById('backToCart');
+        const clearCart = document.getElementById('clearCart');
+
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const cartEmptyMessage = document.getElementById('cartEmptyMessage');
+
+        const paymentForm = document.getElementById('paymentForm');
+        const successOk = document.getElementById('successOk');
+        const clientId = document.getElementById('clientId');
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function formatPrice(value) {
+            return value.toFixed(2) + ' CHF';
+        }
+
+        function getCartCount() {
+            return cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function getCartTotal() {
+            return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        }
+
+        function updateFloatingCart() {
+            floatingCartCount.textContent = getCartCount();
+        }
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartEmptyMessage.style.display = 'block';
+                cartTotalPrice.textContent = formatPrice(0);
+                return;
+            }
+
+            cartEmptyMessage.style.display = 'none';
+
+            cart.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'cart-table-row';
+
+                row.innerHTML = `
+                    <span>${item.name}</span>
+                    <span class="cart-qty-controls">
+                        <button class="qty-btn" data-action="decrease" data-index="${index}">-</button>
+                        <span class="qty-value">${item.quantity}</span>
+                        <button class="qty-btn" data-action="increase" data-index="${index}">+</button>
+                    </span>
+                    <span>${formatPrice(item.price * item.quantity)}</span>
+                `;
+
+                cartItemsContainer.appendChild(row);
+            });
+
+            cartTotalPrice.textContent = formatPrice(getCartTotal());
+
+            document.querySelectorAll('.qty-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = Number(button.dataset.index);
+                    const action = button.dataset.action;
+
+                    if (action === 'increase') {
+                        cart[index].quantity += 1;
+                    }
+
+                    if (action === 'decrease') {
+                        cart[index].quantity -= 1;
+                        if (cart[index].quantity <= 0) {
+                            cart.splice(index, 1);
+                        }
+                    }
+
+                    saveCart();
+                    updateFloatingCart();
+                    renderCart();
+                });
+            });
+        }
+
+        function openModal(modal) {
+            modal.classList.add('active');
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('active');
+        }
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const ticketName = button.dataset.ticket;
+                const ticketPrice = Number(button.dataset.price);
+
+                const existingItem = cart.find(item => item.name === ticketName);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        name: ticketName,
+                        price: ticketPrice,
+                        quantity: 1
+                    });
+                }
+
+                saveCart();
+                updateFloatingCart();
+                renderCart();
+
+                floatingCartButton.classList.add('cart-bump');
+                setTimeout(() => {
+                    floatingCartButton.classList.remove('cart-bump');
+                }, 250);
+            });
+        });
+
+        floatingCartButton.addEventListener('click', () => {
+            renderCart();
+            openModal(cartModal);
+        });
+
+        closeCart.addEventListener('click', () => closeModal(cartModal));
+        closePayment.addEventListener('click', () => closeModal(paymentModal));
+        closeSuccess.addEventListener('click', () => closeModal(successModal));
+        successOk.addEventListener('click', () => closeModal(successModal));
+
+        clearCart.addEventListener('click', () => {
+            cart.length = 0;
+            saveCart();
+            updateFloatingCart();
+            renderCart();
+        });
+
+        goToPayment.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Votre panier est vide.');
+                return;
+            }
+
+            closeModal(cartModal);
+            openModal(paymentModal);
+        });
+
+        backToCart.addEventListener('click', () => {
+            closeModal(paymentModal);
+            openModal(cartModal);
+        });
+
+        paymentForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const generatedId = "EVT-" + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+            clientId.textContent = generatedId;
+
+            closeModal(paymentModal);
+            openModal(successModal);
+
+            cart.length = 0;
+            saveCart();
+            updateFloatingCart();
+            renderCart();
+            paymentForm.reset();
+        });
+
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.addEventListener('click', () => {
+                closeModal(cartModal);
+                closeModal(paymentModal);
+                closeModal(successModal);
+            });
+        });
+
+        updateFloatingCart();
+        renderCart();
+    </script>
+
+</body>
+</html>

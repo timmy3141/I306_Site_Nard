@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/contacts.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+
+            <nav>
+                <a href="Accueil.html">ACCUEIL</a>
+                <a href="Planning.html">PLANNING</a>
+                <a href="Billetterie.html">BILLETTERIE</a>
+                <a href="Apropos.html">À PROPOS</a>
+                <a href="Contacts.html" class="active">CONTACTS</a>
+            </nav>
+        </div>
+
+        <div class="header-line"></div>
+    </header>
+
+    <!-- ===== SECTION ===== -->
+    <section class="contacts-hero">
+        <img class="section-bg" src="../assets/images/contacts_1_bg.png" alt="Fond contacts">
+
+        <div class="overlay"></div>
+
+        <div class="contacts-content">
+            <div class="contacts-box">
+
+                <h1>Contactez - Nous !</h1>
+
+                <div class="contact-block">
+                    <h2>NARD Corp :</h2>
+                    <p><strong>Email :</strong> nard@contact.com</p>
+                    <p><strong>Téléphone :</strong> +41 56 381 67 12</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="contact-block">
+                    <h2>EventAndParty :</h2>
+                    <p><strong>Email :</strong> eventandparty@contact.com</p>
+                    <p><strong>Téléphone :</strong> +41 64 239 12 76</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PANIER ===== -->
+    <button id="floatingCartButton" class="floating-cart-button">
+        Panier (<span id="floatingCartCount">0</span>)
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top"></div>
+        <p></p>
+        <p></p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const floatingCartButton = document.getElementById('floatingCartButton');
+        const floatingCartCount = document.getElementById('floatingCartCount');
+
+        function updateFloatingCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            floatingCartCount.textContent = count;
+        }
+
+        updateFloatingCart();
+
+        floatingCartButton.addEventListener('click', () => {
+            window.location.href = "Billetterie.html";
+        });
+    </script>
+
+</body>
+</html>

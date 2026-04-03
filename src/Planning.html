@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/planning.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+
+            <nav>
+                <a href="Accueil.html">ACCUEIL</a>
+                <a href="Planning.html" class="active">PLANNING</a>
+                <a href="Billetterie.html">BILLETTERIE</a>
+                <a href="Apropos.html">À PROPOS</a>
+                <a href="Contacts.html">CONTACTS</a>
+            </nav>
+        </div>
+
+        <div class="header-line"></div>
+    </header>
+
+    <!-- ===== HERO (HORAIRES) ===== -->
+    <section class="hero">
+        <img class="section-bg" src="../assets/images/Planning_1_bg.png" alt="Fond planning">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="schedule-title-main"></h1>
+            <h1 class="schedule-title-main"></h1>
+
+            <div class="schedule">
+                <div class="schedule-wrapper">
+
+                    <!-- ===== JOUR 1 ===== -->
+                    <div class="schedule-day">
+                        <h3>Jour 1 - Samedi 23 Mai 2026</h3>
+
+                        <div class="row"><span>09:00 - 09:30</span><span>Ouverture des portes</span></div>
+                        <div class="row"><span>09:30 - 10:00</span><span>Présentation de l'événement</span></div>
+
+                        <div class="row"><span>10:00 - 10:30</span><span>Phase 1 - Match 1 : Équipe A vs Équipe B</span></div>
+                        <div class="row"><span>10:30 - 11:00</span><span>Phase 1 - Match 2 : Équipe A vs Équipe C</span></div>
+                        <div class="row"><span>11:00 - 11:30</span><span>Phase 1 - Match 3 : Équipe A vs Équipe D</span></div>
+                        <div class="row"><span>11:30 - 12:00</span><span>Phase 1 - Match 4 : Équipe B vs Équipe C</span></div>
+                        <div class="row"><span>12:00 - 13:00</span><span>Pause de Midi</span></div>
+                        <div class="row"><span>13:00 - 13:30</span><span>Phase 1 - Match 5 : Équipe B vs Équipe D</span></div>
+                        <div class="row"><span>13:30 - 14:00</span><span>Phase 1 - Match 6 : Équipe C vs Équipe D</span></div>
+                        <div class="row"><span>12:00 - 13:00</span><span>Pause</span></div>
+                        <div class="row"><span>14:00 - 15:00</span><span>Animations / interviews</span></div>
+                        <div class="row"><span>15:00 - 16:00</span><span>Session libre / découverte</span></div>
+                    </div>
+
+                    <!-- ===== JOUR 2 ===== -->
+                    <div class="schedule-day">
+                        <h3>Jour 2 - Dimanche 24 Mai 2026</h3>
+
+                        <div class="row"><span>09:00 - 09:30</span><span>Ouverture des portes</span></div>
+                        <div class="row"><span>09:30 - 10:00</span><span>Recapitulatif de la première journée</span></div>
+
+                        <div class="row"><span>10:00 - 10:30</span><span>Phase 2 - Match 1 : Équipe A vs Équipe B</span></div>
+                        <div class="row"><span>10:30 - 11:00</span><span>Phase 2 - Match 2 : Équipe A vs Équipe C</span></div>
+                        <div class="row"><span>11:00 - 11:30</span><span>Phase 2 - Match 3 : Équipe B vs Équipe C</span></div>
+
+                        <div class="row"><span>12:00 - 13:00</span><span>Pause déjeuner</span></div>
+
+                        <div class="row"><span>13:00 - 13:30</span><span>Animations / Interviews</span></div>
+                        <div class="row"><span>13:30 - 14:00</span><span>Préparation de la finale</span></div>
+
+                        <div class="row"><span>14:00 - 14:30</span><span>Grande finale : Équipe A vs Équipe B</span></div>
+                        <div class="row"><span>14:30 - 15:00</span><span>Remise des prix</span></div>
+                        <div class="row"><span>15:00 - 15:30</span><span>Photos / rencontres avec les joueurs</span></div>
+                        <div class="row"><span>15:30 - 16:00</span><span>Aperitif avec les joueurs et clôture</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button id="floatingCartButton" class="floating-cart-button">
+        Panier (<span id="floatingCartCount">0</span>)
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top"></div>
+        <p></p>
+        <p></p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const floatingCartButton = document.getElementById('floatingCartButton');
+        const floatingCartCount = document.getElementById('floatingCartCount');
+
+        function updateFloatingCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            floatingCartCount.textContent = count;
+        }
+
+        updateFloatingCart();
+
+        floatingCartButton.addEventListener('click', () => {
+            window.location.href = "Billetterie.html";
+        });
+    </script>
+
+</body>
+</html>

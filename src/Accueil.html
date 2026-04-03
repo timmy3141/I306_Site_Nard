@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/accueil.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+                <nav>
+                    <a href="Accueil.html" class="active">ACCUEIL</a>
+                    <a href="Planning.html">PLANNING</a>
+                    <a href="Billetterie.html">BILLETTERIE</a>
+                    <a href="Apropos.html">À PROPOS</a>
+                    <a href="Contacts.html">CONTACTS</a>
+                </nav>
+        </div>
+
+        <div class="header-line"></div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <img class="section-bg" src="../assets/images/accueil_1_bg.png" alt="Fond accueil">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <h1>OPERATION <span>YVERDON</span> 2026</h1>
+            <p>LE PLUS GRAND TOURNOI E-SPORT SUISSE DE L'ANNÉE</p>
+
+            <div class="buttons">
+                <a href="#" class="btn primary">RÉSERVER UNE PLACE</a>
+                <a href="#" class="btn secondary">VOIR LE PLANNING</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEPARATION ===== -->
+    <div class="separator"></div>
+
+    <!-- ===== INFOS ===== -->
+    <section class="infos">
+        <img class="section-bg" src="../assets/images/accueil_2_bg.png" alt="Fond infos">
+
+        <div class="overlay"></div>
+
+        <div class="infos-content">
+            <div class="card">
+                <h3>Quand ?</h3>
+                <p>2 Jours</p>
+                <p>Du 23 au 24 Mai 2026</p>
+            </div>
+
+            <div class="card">
+                <h3>Où ?</h3>
+                <p>Salle de la Marive</p>
+                <p>1400 Yverdon-les-Bains</p>
+            </div>
+
+            <div class="card">
+                <h3>Qui ?</h3>
+                <p>4 Équipes</p>
+                <p>16 Joueurs</p>
+                <p> </p>
+            </div>
+        </div>
+    </section>
+
+    <button id="floatingCartButton" class="floating-cart-button">
+        Panier (<span id="floatingCartCount">0</span>)
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top"></div>
+        <p></p>
+        <p></p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const floatingCartButton = document.getElementById('floatingCartButton');
+        const floatingCartCount = document.getElementById('floatingCartCount');
+
+        function updateFloatingCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            floatingCartCount.textContent = count;
+        }
+
+        updateFloatingCart();
+
+        floatingCartButton.addEventListener('click', () => {
+            window.location.href = "Billetterie.html";
+        });
+    </script>
+
+</body>
+</html>
